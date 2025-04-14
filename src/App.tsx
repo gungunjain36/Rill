@@ -3,13 +3,14 @@ import './App.css';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const rillURL = "https://rill.pages.dev/"
+  const [email, setEmail] = useState('');
+  const rillURL = "https://rill.pages.dev/" // Replace with your actual Get Started URL if different
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -21,6 +22,21 @@ function App() {
     }
   };
 
+  const handleWaitlistSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the email to your backend
+    alert(`Thank you! ${email} has been added to our waitlist.`);
+    setEmail('');
+  };
+
+  // Dummy function for Talk to Sales button for now
+  const handleTalkToSales = () => {
+    // Replace with actual logic, e.g., open contact form, Calendly link, etc.
+    alert('Redirecting to sales contact...');
+    // Example: window.location.href = '/contact-sales';
+  };
+
+
   return (
     <div className="app-container">
       {/* Header */}
@@ -28,7 +44,7 @@ function App() {
         <div className="logo-container">
           <span className="logo-text" style={{ fontFamily: 'Unbounded' }}>Rill</span>
         </div>
-        
+
         <nav className="nav-links">
           <button className="nav-link" onClick={() => scrollToSection('hero')}>
             Home
@@ -42,9 +58,9 @@ function App() {
           <button className="nav-link" onClick={() => scrollToSection('footer')}>
             Contact Us
           </button>
-          {/* <button className="btn btn-primary" onClick={() => window.open(rillURL, '_blank')}>
+          <button className="btn btn-primary" onClick={() => window.open(rillURL, '_blank')}>
             Get Started
-          </button> */}
+          </button>
         </nav>
       </header>
 
@@ -52,14 +68,14 @@ function App() {
         {/* Hero Section */}
         <section id="hero" className="hero-section">
           {/* Background image */}
-          <div 
+          <div
             className="background-image"
             style={{ backgroundImage: 'url(/rill.webp)' }}
           ></div>
-          
+
           {/* Gradient overlay */}
           <div className="gradient-overlay"></div>
-          
+
           {/* Content */}
           <div className="hero-content">
             <h1 className="hero-title" style={{ fontFamily: 'Unbounded' }}>
@@ -68,21 +84,31 @@ function App() {
             <p className="hero-subtitle">
             Describe your vision in plain language. Rill generates the smart contracts and frontend, ready to launch on multiple blockchains in seconds.
             </p>
-            <div className="button-group">
-              <button className="btn btn-primary btn-large" onClick={() => window.open(rillURL, '_blank')}>
-                Get Started
-              </button>
+            <div className="waitlist-form">
+              <form onSubmit={handleWaitlistSubmit}>
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="waitlist-input"
+                />
+                <button type="submit" className="btn btn-primary btn-large">
+                  Join Waitlist
+                </button>
+              </form>
             </div>
           </div>
         </section>
-        
+
         {/* Features Section */}
         <section id="features" className="features-section">
           <div className="section-container">
             <h2 className="section-title" style={{ fontFamily: 'Unbounded' }}>
               Build Faster with Powerful Features
             </h2>
-            
+
             {/* Feature 1 - Image right */}
             <div className="feature-row">
               <div className="feature-content">
@@ -98,7 +124,7 @@ function App() {
                   AI-Powered Code Generation
                 </h3>
                 <p className="feature-description">
-                  Simply describe what you want to build, and our AI will generate 
+                  Simply describe what you want to build, and our AI will generate
                   production-ready code for your Web3 applications. Skip the boilerplate
                   and focus on what makes your dApp unique.
                 </p>
@@ -127,14 +153,14 @@ function App() {
                 </ul>
               </div>
               <div className="feature-image">
-                <img 
-                  src="/rill_pr1.webp" 
-                  alt="AI-Powered Code Generation" 
+                <img
+                  src="/rill_pr1.webp"
+                  alt="AI-Powered Code Generation"
                   className="feature-img"
                 />
               </div>
             </div>
-            
+
             {/* Feature 2 - Image left */}
             <div className="feature-row feature-row-reverse">
               <div className="feature-content">
@@ -180,14 +206,14 @@ function App() {
                 </ul>
               </div>
               <div className="feature-image">
-                <img 
-                  src="/rill_pr2.webp" 
-                  alt="One-Click Deployment" 
+                <img
+                  src="/rill_pr2.webp"
+                  alt="One-Click Deployment"
                   className="feature-img"
                 />
               </div>
             </div>
-            
+
             {/* Feature 3 - Image right */}
             <div className="feature-row">
               <div className="feature-content">
@@ -234,55 +260,90 @@ function App() {
                 </ul>
               </div>
               <div className="feature-image">
-                <img 
-                  src="/rill_pr3.webp" 
-                  alt="Decentralized Collaboration" 
+                <img
+                  src="/rill_pr3.webp"
+                  alt="Decentralized Collaboration"
                   className="feature-img"
                 />
               </div>
             </div>
           </div>
         </section>
-        
-         {/* How It Works Section */}
-         <section id="how-it-works" className="how-it-works-section" >
-          <div className="how-it-works-container">
-            <h2 className="how-it-works-title" style={{fontFamily: 'Unbounded', color: 'black'}}>How It Works</h2>
-            
-            <div className="steps-container">
-              {/* Connecting line */}
-              <div className="connecting-line"></div>
-              
-              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
-                <div className="step-number" style={{fontFamily: 'Unbounded'}}>1</div>
-                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Connect Wallet</h3>
-                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Connect your Web3 wallet to get started and authenticate securely.</p>
-              </div>
-              
-              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
-                <div className="step-number" style={{fontFamily: 'Unbounded'}}>2</div>
-                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Describe Your dApp</h3>
-                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Tell Rill what you want to build using natural language prompts.</p>
-              </div>
-              
-              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
-                <div className="step-number" style={{fontFamily: 'Unbounded'}}>3</div>
-                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Deploy & Share</h3>
-                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Deploy to your chosen blockchain and share with collaborators via IPFS.</p>
-              </div>
+
+        {/* === How It Works Section - Updated === */}
+        <section id="how-it-works" className="how-it-works-section-new">
+            <div className="how-it-works-container-new">
+                {/* Left Side */}
+                <div className="how-it-works-left">
+                    <p className="how-it-works-subtitle">How Rill is built.</p>
+                    <h2 className="how-it-works-main-title">
+                        How it works?
+                    </h2>
+                    <p className="how-it-works-description">
+                    Rill is an AI-powered platform that transforms Web3 development from concept to functional dApp in seconds.
+                    </p>
+                    
+                </div>
+
+                {/* Right Side - Feature Grid */}
+                <div className="how-it-works-right">
+                    <div className="feature-grid">
+                        {/* Feature Box 1 */}
+                        <div className="feature-box">
+                            <h4 className="feature-box-title" style={{fontFamily: 'Unbounded'}}>
+                                <span className="feature-icon-square icon-yellow" ></span>
+                                Connect your wallet
+                            </h4>
+                            <p className="feature-box-description">
+                            Connect your Web3 wallet to get started and authenticate securely.
+                            </p>
+                        </div>
+                        {/* Feature Box 2 */}
+                        <div className="feature-box">
+                             <h4 className="feature-box-title" style={{fontFamily: 'Unbounded'}}>
+                                <span className="feature-icon-square icon-pink"></span>
+                                Describe Your dApp
+                            </h4>
+                            <p className="feature-box-description">
+                            Tell Rill what you want to build using natural language prompts.
+                            </p>
+                        </div>
+                        {/* Feature Box 3 */}
+                        <div className="feature-box">
+                             <h4 className="feature-box-title" style={{fontFamily: 'Unbounded'}}>
+                                <span className="feature-icon-square icon-purple"></span>
+                                Store in vault 
+                            </h4>
+                            <p className="feature-box-description">
+                                Store your project files in our secure vault for easy access and collaboration.
+                            </p>
+                        </div>
+                        {/* Feature Box 4 */}
+                        <div className="feature-box">
+                            <h4 className="feature-box-title" style={{fontFamily: 'Unbounded'}}>
+                                <span className="feature-icon-square icon-orange"></span>
+                                Deploy & Share
+                            </h4>
+                            <p className="feature-box-description">
+                            Deploy to your chosen blockchain and share with collaborators via IPFS.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </section>
+        {/* === End of Updated How It Works Section === */}
+
       </main>
-      
+
       {/* Combined CTA and Footer section with shared background */}
       <div className="cta-section">
         {/* Shared background image */}
-        <div 
+        <div
           className="footer-bg"
           style={{ backgroundImage: 'url(/rill_footer.webp)' }}
         ></div>
-        
+
         {/* CTA Section */}
         <section className="cta-container">
           <div className="cta-card">
@@ -297,7 +358,7 @@ function App() {
             </button>
           </div>
         </section>
-        
+
         {/* Footer */}
         <footer id="footer" className="footer">
           <div className="footer-container">
@@ -308,7 +369,7 @@ function App() {
                   Rill
                 </span>
               </div>
-              
+
               <div className="social-links">
                 <a href="#" className="social-link">
                   <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -329,7 +390,7 @@ function App() {
                 </a>
               </div>
             </div>
-            
+
             {/* Footer bottom section */}
             <div className="footer-bottom">
               <p className="copyright">
