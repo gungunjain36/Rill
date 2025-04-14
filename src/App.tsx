@@ -30,11 +30,11 @@ function App() {
   };
 
   // Dummy function for Talk to Sales button for now
-  const handleTalkToSales = () => {
-    // Replace with actual logic, e.g., open contact form, Calendly link, etc.
-    alert('Redirecting to sales contact...');
-    // Example: window.location.href = '/contact-sales';
-  };
+  // const handleTalkToSales = () => {
+  //   // Replace with actual logic, e.g., open contact form, Calendly link, etc.
+  //   alert('Redirecting to sales contact...');
+  //   // Example: window.location.href = '/contact-sales';
+  // };
 
 
   return (
