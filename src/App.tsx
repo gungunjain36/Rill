@@ -245,9 +245,9 @@ function App() {
         </section>
         
          {/* How It Works Section */}
-         <section id="how-it-works" className="how-it-works-section" style={{backgroundColor: 'black', color: 'white'}}>
+         <section id="how-it-works" className="how-it-works-section" >
           <div className="how-it-works-container">
-            <h2 className="how-it-works-title" style={{fontFamily: 'Unbounded'}}>How It Works</h2>
+            <h2 className="how-it-works-title" style={{fontFamily: 'Unbounded', color: 'black'}}>How It Works</h2>
             
             <div className="steps-container">
               {/* Connecting line */}
