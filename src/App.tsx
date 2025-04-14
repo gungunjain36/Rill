@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+// Define the possible tab names as a type for better type safety
+type FeatureTab = 'customerExperience' | 'dedicatedInfrastructure' | 'operatingProcedure';
+
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [email, setEmail] = useState('');
-  const rillURL = "https://rill.pages.dev/" // Replace with your actual Get Started URL if different
+  // State to manage the active feature tab
+  const [activeFeatureTab, setActiveFeatureTab] = useState<FeatureTab>('customerExperience');
+  const rillURL = "https://rill.pages.dev/"; // Replace with your actual Get Started URL if different
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,13 +34,17 @@ function App() {
     setEmail('');
   };
 
-  // Dummy function for Talk to Sales button for now
-  // const handleTalkToSales = () => {
-  //   // Replace with actual logic, e.g., open contact form, Calendly link, etc.
-  //   alert('Redirecting to sales contact...');
-  //   // Example: window.location.href = '/contact-sales';
-  // };
+  // Dummy function for CTA buttons inside tabs
+  const handleFeatureCtaClick = (featureName: string) => {
+    alert(`Learn more about ${featureName}...`);
+    // Example: window.location.href = `/features/${featureName}`;
+  }
 
+  // Dummy function for the "Start for Free" button in the feature section
+  const handleStartForFree = () => {
+    alert('Redirecting to Start for Free...');
+    // Example: window.open(rillURL, '_blank');
+  }
 
   return (
     <div className="app-container">
@@ -72,10 +81,8 @@ function App() {
             className="background-image"
             style={{ backgroundImage: 'url(/rill.webp)' }}
           ></div>
-
           {/* Gradient overlay */}
           <div className="gradient-overlay"></div>
-
           {/* Content */}
           <div className="hero-content">
             <h1 className="hero-title" style={{ fontFamily: 'Unbounded' }}>
@@ -102,173 +109,101 @@ function App() {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="features-section">
+        {/* === Features Section - Updated === */}
+        <section id="features" className="features-section new-features-section">
           <div className="section-container">
-            <h2 className="section-title" style={{ fontFamily: 'Unbounded' }}>
-              Build Faster with Powerful Features
-            </h2>
+             {/* Introductory Text */}
+            <div className="feature-intro-text">
+              <p className="feature-intro-subtitle">Rill works with everyone.</p>
+              <h2 className="feature-intro-title">Build Faster with Powerful Features</h2>
+              
+            </div>
 
-            {/* Feature 1 - Image right */}
-            <div className="feature-row">
-              <div className="feature-content">
-                <div className="feature-icon-container">
-                  <div className="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="16 18 22 12 16 6"></polyline>
-                      <polyline points="8 6 2 12 8 18"></polyline>
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="feature-title" style={{ fontFamily: 'Unbounded' }}>
+             {/* Tab Container */}
+            <div className="feature-tab-container">
+               {/* Tab Navigation */}
+              <div className="feature-tabs">
+                <button
+                  className={`feature-tab-button ${activeFeatureTab === 'customerExperience' ? 'active' : ''}`}
+                  onClick={() => setActiveFeatureTab('customerExperience')}
+                >
                   AI-Powered Code Generation
-                </h3>
-                <p className="feature-description">
-                  Simply describe what you want to build, and our AI will generate
-                  production-ready code for your Web3 applications. Skip the boilerplate
-                  and focus on what makes your dApp unique.
-                </p>
-                <ul className="feature-list">
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Smart contract generation</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Frontend scaffolding</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Web3 integrations</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="feature-image">
-                <img
-                  src="/rill_pr1.webp"
-                  alt="AI-Powered Code Generation"
-                  className="feature-img"
-                />
-              </div>
-            </div>
-
-            {/* Feature 2 - Image left */}
-            <div className="feature-row feature-row-reverse">
-              <div className="feature-content">
-                <div className="feature-icon-container">
-                  <div className="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="feature-title" style={{ fontFamily: 'Unbounded' }}>
+                </button>
+                <button
+                  className={`feature-tab-button ${activeFeatureTab === 'dedicatedInfrastructure' ? 'active' : ''}`}
+                  onClick={() => setActiveFeatureTab('dedicatedInfrastructure')}
+                >
                   One-Click Deployment
-                </h3>
-                <p className="feature-description">
-                  Deploy your applications to multiple blockchain networks with a single click.
-                  We handle the complex deployment process so you don't have to worry about gas,
-                  transaction signing, or network configurations.
-                </p>
-                <ul className="feature-list">
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Support for multiple chains</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Automatic gas optimization</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Contract verification</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="feature-image">
-                <img
-                  src="/rill_pr2.webp"
-                  alt="One-Click Deployment"
-                  className="feature-img"
-                />
-              </div>
-            </div>
-
-            {/* Feature 3 - Image right */}
-            <div className="feature-row">
-              <div className="feature-content">
-                <div className="feature-icon-container">
-                  <div className="feature-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                  </div>
-                </div>
-                <h3 className="feature-title" style={{ fontFamily: 'Unbounded' }}>
+                </button>
+                <button
+                  className={`feature-tab-button ${activeFeatureTab === 'operatingProcedure' ? 'active' : ''}`}
+                  onClick={() => setActiveFeatureTab('operatingProcedure')}
+                >
                   Decentralized Collaboration
-                </h3>
-                <p className="feature-description">
-                  Share your projects using IPFS for truly decentralized collaboration.
-                  Work with team members anywhere in the world while maintaining full
-                  ownership of your code and data.
-                </p>
-                <ul className="feature-list">
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>IPFS integration</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Permissionless sharing</span>
-                  </li>
-                  <li className="feature-list-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Real-time updates</span>
-                  </li>
-                </ul>
+                </button>
               </div>
-              <div className="feature-image">
-                <img
-                  src="/rill_pr3.webp"
-                  alt="Decentralized Collaboration"
-                  className="feature-img"
-                />
+
+               {/* Tab Content Area */}
+              <div className="feature-tab-content-wrapper">
+                {/* Customer Experience Content */}
+                {activeFeatureTab === 'customerExperience' && (
+                  <div className="feature-tab-content">
+                    <div className="feature-tab-text">
+                      <h3 className="feature-tab-title">Say & Rill will do it.</h3>
+                      <p className="feature-tab-description">
+                      Simply describe what you want to build, and our AI will generate production-ready code for your Web3 applications. Skip the boilerplate and focus on what makes your dApp unique.
+                      </p>
+                    </div>
+                    <div className="feature-tab-graphic">
+                      {/* Placeholder for the pixel graphic */}
+                      <img src="/rill_pr1.webp" alt="Customer Experience Graphic" className="feature-graphic-img"/>
+                    </div>
+                  </div>
+                )}
+
+                {/* Dedicated Infrastructure Content */}
+                {activeFeatureTab === 'dedicatedInfrastructure' && (
+                  <div className="feature-tab-content">
+                     <div className="feature-tab-text">
+                       <h3 className="feature-tab-title">Deploy in seconds.</h3>
+                       <p className="feature-tab-description">
+                       Deploy your applications to multiple blockchain networks with a single click. We handle the complex deployment process so you don't have to worry about gas, transaction signing, or network configurations.
+                       </p>
+                       
+                    </div>
+                    <div className="feature-tab-graphic">
+                      {/* Placeholder for the hash graphic */}
+                       <img src="/rill_pr3.webp" alt="Infrastructure Graphic" className="feature-graphic-img"/>
+                    </div>
+                  </div>
+                )}
+
+                {/* Operating Procedure Content (Placeholder) */}
+                {activeFeatureTab === 'operatingProcedure' && (
+                   <div className="feature-tab-content">
+                    <div className="feature-tab-text">
+                       <h3 className="feature-tab-title">Take it in your own hands.</h3>
+                       <p className="feature-tab-description">
+                        Share your projects using IPFS for truly decentralized collaboration. Work with team members anywhere in the world while maintaining full ownership of your code and data.
+                       </p>
+                    </div>
+                    <div className="feature-tab-graphic">
+                      {/* Placeholder for the operating procedure graphic */}
+                      <img src="/rill_pr2.webp" alt="Operating Procedure Graphic" className="feature-graphic-img"/>
+                    </div>
+                  </div>
+                )}
               </div>
+
+               {/* Start for Free Button Container */}
+               <div className="start-free-button-container">
+               </div>
+
             </div>
           </div>
         </section>
+        {/* === End of Updated Features Section === */}
+
 
         {/* === How It Works Section - Updated === */}
         <section id="how-it-works" className="how-it-works-section-new">
@@ -282,7 +217,7 @@ function App() {
                     <p className="how-it-works-description">
                     Rill is an AI-powered platform that transforms Web3 development from concept to functional dApp in seconds.
                     </p>
-                    
+
                 </div>
 
                 {/* Right Side - Feature Grid */}
@@ -312,7 +247,7 @@ function App() {
                         <div className="feature-box">
                              <h4 className="feature-box-title" style={{fontFamily: 'Unbounded'}}>
                                 <span className="feature-icon-square icon-purple"></span>
-                                Store in vault 
+                                Store in vault
                             </h4>
                             <p className="feature-box-description">
                                 Store your project files in our secure vault for easy access and collaboration.

@@ -9,7 +9,7 @@
   --rill-primary: #ff5252; /* Kept original primary for other elements */
   --rill-primary-dark: #c50e29;
   --rill-primary-light: #ff867f;
-  --rill-background: #faf0f0; /* Light beige background for left side */
+  --rill-background: #faf0f0; /* Light beige background for most sections */
   --rill-text-primary: #333333;
   --rill-text-secondary: #666666;
   --rill-border-color: #f0d0d0;
@@ -17,17 +17,29 @@
   --rill-transparent: rgba(255, 255, 255, 0);
   --rill-step-bg: rgba(219, 197, 197, 0.719);
 
-  /* New variables for the "How it works" section */
-  --how-it-works-dark-bg: #111111; /* Dark background for right side */
-  --how-it-works-text-light: #FFFFFF; /* Light text for dark background */
+  /* Variables for the "How it works" section (keep if needed elsewhere) */
+  --how-it-works-dark-bg: #111111;
+  --how-it-works-text-light: #FFFFFF;
   --how-it-works-text-light-secondary: rgba(255, 255, 255, 0.7);
   --how-it-works-border: rgba(255, 255, 255, 0.1);
-  --how-it-works-btn-bg: #DC3545; /* Red button background */
+  --how-it-works-btn-bg: #DC3545;
   --how-it-works-btn-hover-bg: #C82333;
   --icon-yellow: #FDBF61;
   --icon-pink: #F781BF;
   --icon-purple: #BE96D3;
   --icon-orange: #FD9A4E;
+
+  /* New variables for the updated Features (Tab) section */
+  --feature-tab-dark-bg: #111111; /* Dark background for the main container */
+  --feature-tab-light-bg: #f8f9fa; /* Light background for the tab bar */
+  --feature-tab-border: #dee2e6;
+  --feature-tab-text-dark: #495057;
+  --feature-tab-text-light: #FFFFFF;
+  --feature-tab-text-light-secondary: rgba(255, 255, 255, 0.7);
+  --feature-tab-active-bg: #111111; /* Active tab matches container */
+  --feature-tab-active-text: #FFFFFF;
+  --feature-cta-button-bg: #DC3545; /* Red for CTAs */
+  --feature-cta-button-hover-bg: #C82333;
 }
 
 /* Font face declarations */
@@ -403,203 +415,283 @@ body {
 }
 
 
-/* Features section styles */
-.features-section {
-  padding: 6rem 1.5rem;
+/* === Updated Features Section Styles (Tabs) === */
+.new-features-section {
+  padding: 5rem 1.5rem; /* Adjust padding */
+  background-color: var(--rill-background); /* Keep light background for the section */
 }
 
-.section-container {
-  max-width: 1280px;
+.section-container { /* Reusing this class name */
+  max-width: 1140px; /* Adjust max-width as needed */
   margin: 0 auto;
 }
 
-.section-title {
-  font-family: 'Unbounded', sans-serif; /* Using Unbounded like Hero title */
-  font-weight: 700;
-  font-size: 2.5rem; /* Adjusted size */
-  margin-bottom: 4rem;
+/* Introductory Text Styles */
+.feature-intro-text {
+  max-width: 700px; /* Limit width */
+  margin: 0 auto 3rem auto; /* Center and add bottom margin */
   text-align: center;
+}
+
+.feature-intro-subtitle {
+  font-family: Inter, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--rill-text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.feature-intro-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 2.25rem; /* Adjust size */
+  font-weight: 700;
   color: var(--rill-text-primary);
+  line-height: 1.3;
+  margin-bottom: 1rem;
 }
 
-.feature-row {
+.feature-intro-description {
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  color: var(--rill-text-secondary);
+  line-height: 1.6;
+}
+
+/* Tab Container Styles */
+.feature-tab-container {
+  background-color: var(--feature-tab-dark-bg);
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem 2rem 2rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--feature-tab-text-light);
+  margin: 0 auto;
+  max-width: 1000px;
+  margin-bottom: 2rem;
+}
+
+/* Tab Navigation Styles */
+.feature-tabs {
   display: flex;
-  flex-direction: column; /* Stack on small screens by default */
+  justify-content: center;
+  background-color: var(--feature-tab-light-bg);
+  border-radius: 99px;
+  padding: 0.5rem;
+  margin: 0 auto 3rem auto;
+  border: 1px solid var(--feature-tab-border);
+  width: fit-content;
+}
+
+.feature-tab-button {
+  font-family: Inter, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--feature-tab-text-dark);
+  background-color: transparent;
+  border: none;
+  padding: 0.6rem 1.2rem; /* Button padding */
+  border-radius: 99px; /* Pill shape */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.feature-tab-button:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle hover */
+}
+
+.feature-tab-button.active {
+  background-color: var(--feature-tab-active-bg);
+  color: var(--feature-tab-active-text);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for active */
+}
+
+/* Tab Content Styles */
+.feature-tab-content-wrapper {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.feature-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   align-items: center;
-  gap: 3rem;
-  margin-bottom: 6rem;
-  padding: 2rem;
-  border-radius: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.feature-row:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.feature-row:last-child {
-  margin-bottom: 0;
-}
-
-@media (min-width: 1024px) {
-  .feature-row {
-    flex-direction: row; /* Side-by-side on large screens */
-    gap: 4rem;
-  }
-
-  .feature-row-reverse {
-    flex-direction: row-reverse; /* Reverse order on large screens */
+@media (min-width: 768px) { /* Side-by-side on larger screens */
+  .feature-tab-content {
+    flex-direction: row;
+    align-items: flex-start; /* Align items to top */
+    gap: 3rem;
   }
 }
 
-.feature-content {
-  flex: 1;
-  width: 100%; /* Ensure content takes full width when stacked */
+.feature-tab-text {
+  flex: 1; /* Allow text to take space */
+  max-width: 500px; /* Limit text width */
 }
 
-@media (min-width: 1024px) {
-  .feature-content {
-    width: auto; /* Reset width for side-by-side */
-    padding-right: 3rem; /* Add padding only on large screens */
-  }
-
-  .feature-row-reverse .feature-content {
-    padding-right: 0;
-    padding-left: 3rem; /* Add padding on the other side for reversed row */
+@media (max-width: 767px) {
+  .feature-tab-text {
+      text-align: center; /* Center text when stacked */
+      max-width: 100%;
   }
 }
 
-.feature-icon-container {
+.feature-tab-graphic {
+  flex: 1; /* Allow graphic to take space */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.5rem; /* Slightly smaller icon container */
-  height: 3.5rem;
-  background: linear-gradient(135deg, var(--rill-primary-light), var(--rill-primary));
-  border-radius: 0.75rem; /* Less rounded */
-  margin-bottom: 1rem; /* Increased margin */
+  min-height: 200px; /* Ensure some height */
+  max-width: 400px; /* Limit graphic width */
+  width: 100%;
+}
+
+.feature-graphic-img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Add specific styles if using divs instead of img */
+    /* background-color: #333; Example background */
+    /* border-radius: 0.5rem; */
+}
+
+.feature-tab-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 2rem; /* Adjust size */
+  font-weight: 700;
+  color: var(--feature-tab-text-light);
+  line-height: 1.3;
+  margin-bottom: 1.5rem;
+}
+
+.feature-tab-description {
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  color: var(--feature-tab-text-light-secondary);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+/* CTA button inside tab content */
+.feature-tab-button-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--feature-tab-text-light);
+  background-color: var(--feature-cta-button-bg);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.feature-tab-button-cta:hover {
+  background-color: var(--feature-cta-button-hover-bg);
+  transform: translateY(-2px);
+}
+
+.feature-tab-button-cta .arrow-icon {
   transition: transform 0.3s ease;
 }
 
-.feature-row:hover .feature-icon-container {
-  transform: scale(1.1) rotate(5deg);
+.feature-tab-button-cta:hover .arrow-icon {
+  transform: translateX(3px);
 }
 
-.feature-icon {
-  color: white;
-  font-size: 1.5rem;
+/* Start for Free Button Styles */
+.start-free-button-container {
+  position: absolute; /* Position relative to tab container */
+  bottom: 2rem; /* Adjust as needed */
+  right: 2rem; /* Adjust as needed */
 }
 
-.feature-title {
-  font-family: 'Unbounded', sans-serif; /* Using Unbounded */
-  font-weight: 700;
-  font-size: 1.75rem; /* Adjusted size */
-  margin-bottom: 1rem;
-  color: var(--rill-text-primary);
-  position: relative;
-  display: inline-block;
-}
-
-.feature-title::after {
-  content: '';
-  position: absolute;
-  bottom: -0.25rem;
-  left: 0;
-  width: 0;
-  height: 3px; /* Thicker underline */
-  background-color: var(--rill-primary);
-  transition: width 0.3s ease;
-}
-
-.feature-row:hover .feature-title::after {
-  width: 100%;
-}
-
-.feature-description {
-  font-family: Inter, sans-serif;
-  font-weight: 400;
-  font-size: 1rem; /* Standard text size */
-  margin-bottom: 1.5rem;
-  color: var(--rill-text-secondary);
-  line-height: 1.7; /* Slightly more line spacing */
-}
-
-.feature-list {
-  list-style: none;
-  padding-left: 0; /* Remove default list padding */
-}
-
-.feature-list-item {
-  display: flex;
+.start-free-button {
+  display: inline-flex;
   align-items: center;
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem; /* Slightly smaller list item text */
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-family: Inter, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--feature-tab-text-light);
+  background-color: var(--feature-cta-button-bg); /* Same style as other CTAs */
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.feature-list-item svg {
-  margin-right: 0.75rem; /* More space for icon */
-  color: var(--rill-primary);
-  flex-shrink: 0; /* Prevent icon shrinking */
+.start-free-button:hover {
+   background-color: var(--feature-cta-button-hover-bg);
+   transform: translateY(-2px);
 }
 
-.feature-list-item span {
-  color: var(--rill-text-secondary);
+.start-free-button .arrow-icon {
+  transition: transform 0.3s ease;
 }
 
-.feature-image {
-  flex: 1;
-  width: 100%; /* Ensure image takes full width when stacked */
-  max-width: 500px; /* Limit max image width */
-  margin: 0 auto; /* Center image when stacked */
+.start-free-button:hover .arrow-icon {
+  transform: translateX(3px);
 }
 
-@media (min-width: 1024px) {
-  .feature-image {
-    width: auto; /* Reset width for side-by-side */
-    max-width: none; /* Remove max width limit */
-    margin: 0; /* Reset margin */
+/* Responsive Tabs */
+@media (max-width: 650px) {
+  .feature-tabs {
+    display: flex;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+    border-radius: 0.75rem;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 2.5rem auto;
+  }
+  
+  /* Keep other responsive styles */
+  .feature-tabs::-webkit-scrollbar { display: none; }
+  .feature-tabs { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .feature-tab-button {
+    flex-shrink: 0;
+    margin: 0 0.25rem;
+  }
+  .feature-tab-button:first-child { margin-left: 0.5rem; }
+  .feature-tab-button:last-child { margin-right: 0.5rem; }
+
+  .start-free-button-container {
+     position: static; /* Reset absolute positioning */
+     margin-top: 2rem; /* Add space above */
+     text-align: center; /* Center button */
   }
 }
 
-.feature-img {
-  width: 100%;
-  border-radius: 0.75rem; /* Consistent border radius */
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  display: block; /* Remove extra space below image */
+
+/* --- Cleanup Old Feature Section Styles --- */
+/* Hide or remove styles for elements no longer used in this section */
+.feature-row,
+.feature-row-reverse,
+.feature-icon-container,
+.feature-icon,
+.feature-title, /* Note: Hiding the old feature title */
+.feature-description, /* Note: Hiding the old feature description */
+.feature-list,
+.feature-image {
+    display: none;
 }
 
-/* Feature row reverse styling (Black background version) */
-.feature-row-reverse {
-  background-color: black;
-  color: white;
-  padding: 4rem 2rem; /* Adjust padding as needed */
-  margin: 4rem -1.5rem; /* Extend to edges */
-  border-radius: 1rem; /* Add border radius */
-}
 
-.feature-row-reverse .feature-title,
-.feature-row-reverse .feature-description,
-.feature-row-reverse .feature-list-item span {
-  color: white; /* Ensure text is white */
-}
-
-.feature-row-reverse .feature-icon-container { /* Adjust icon container for dark background */
-  background: linear-gradient(135deg, var(--rill-primary), var(--rill-primary-dark));
-}
-
-.feature-row-reverse .feature-list-item svg {
-  color: var(--rill-primary-light); /* Use light primary color for checkmarks */
-}
-
-.feature-row-reverse:hover {
-  /* Keep background black on hover, adjust transform if needed */
-  background-color: black;
-  box-shadow: 0 15px 35px rgba(255, 82, 82, 0.1); /* Optional subtle glow */
-  transform: translateY(-5px);
-}
-
-/* --- New How It Works Section Styles --- */
+/* === How It Works Section Styles === */
+/* Keep styles from previous step, but ensure they don't conflict */
 
 .how-it-works-section-new {
   padding: 5rem 1.5rem; /* Adjust padding */
@@ -607,6 +699,7 @@ body {
   overflow: hidden; /* Prevent horizontal scroll if content overflows slightly */
 }
 
+/* Styles for the 2-column layout (if kept) */
 .how-it-works-container-new {
   max-width: 1280px;
   margin: 0 auto;
@@ -614,173 +707,67 @@ body {
   flex-direction: column; /* Stack by default */
   gap: 3rem;
 }
-
-@media (min-width: 992px) { /* Adjust breakpoint as needed */
+@media (min-width: 992px) {
   .how-it-works-container-new {
     flex-direction: row; /* Side-by-side on larger screens */
-    gap: 4rem; /* Adjust gap for side-by-side */
+    gap: 4rem;
   }
 }
-
-/* Left Side Content */
 .how-it-works-left {
-  flex: 1; /* Allow left side to take available space */
-  max-width: 550px; /* Limit max width */
-  padding-right: 2rem; /* Add some spacing between columns on larger screens */
+  flex: 1;
+  max-width: 550px;
+  padding-right: 2rem;
 }
-
 @media (max-width: 991px) {
   .how-it-works-left {
-    max-width: 100%; /* Full width when stacked */
-    padding-right: 0;
-    text-align: center; /* Center text when stacked */
+    max-width: 100%; padding-right: 0; text-align: center;
   }
 }
-
 .how-it-works-subtitle {
-  font-family: Inter, sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--rill-text-secondary);
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: Inter, sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--rill-text-secondary); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
 }
-
 .how-it-works-main-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 2.5rem; /* Adjust size */
-  font-weight: 700;
-  color: var(--rill-text-primary);
-  line-height: 1.3;
-  margin-bottom: 1.5rem;
+  font-family: 'Unbounded', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--rill-text-primary); line-height: 1.3; margin-bottom: 1.5rem;
 }
-
 .how-it-works-description {
-  font-family: Inter, sans-serif;
-  font-size: 1rem;
-  color: var(--rill-text-secondary);
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
+  font-family: Inter, sans-serif; font-size: 1rem; color: var(--rill-text-secondary); line-height: 1.7; margin-bottom: 2.5rem;
 }
-
-.talk-to-sales-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.8rem;
-  font-family: Inter, sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--how-it-works-text-light);
-  background-color: var(--how-it-works-btn-bg);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.talk-to-sales-btn:hover {
-  background-color: var(--how-it-works-btn-hover-bg);
-  transform: translateY(-2px);
-}
-
-.talk-to-sales-btn .arrow-icon {
-  transition: transform 0.3s ease;
-}
-
-.talk-to-sales-btn:hover .arrow-icon {
-  transform: translateX(3px);
-}
-
-/* Right Side - Feature Grid */
 .how-it-works-right {
-  flex: 1.2; /* Give slightly more space to the right side */
+  flex: 1.2;
 }
-
 @media (max-width: 991px) {
-  .how-it-works-right {
-     width: 100%; /* Full width when stacked */
-  }
+  .how-it-works-right { width: 100%; }
 }
-
-
 .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Single column by default */
-  gap: 1.5rem; /* Gap between boxes */
+  display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem;
 }
-
-@media (min-width: 600px) { /* Two columns on medium screens */
-  .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (min-width: 600px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 .feature-box {
-  background-color: var(--how-it-works-dark-bg);
-  color: var(--how-it-works-text-light);
-  padding: 2rem; /* Generous padding */
-  border-radius: 1rem; /* Rounded corners */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--how-it-works-dark-bg); color: var(--how-it-works-text-light); padding: 2rem; border-radius: 1rem; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; width: 100%; max-width: 380px; margin: 0 auto; /* Center boxes if grid centers items */
 }
-
-.feature-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
+.feature-box:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
 .feature-box-title {
-  font-family: Inter, sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--how-it-works-text-light);
-  margin-bottom: 0.75rem;
-  display: flex; /* Use flex to align icon and text */
-  align-items: center;
+  font-family: Inter, sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--how-it-works-text-light); margin-bottom: 0.75rem; display: flex; align-items: center;
 }
-
 .feature-icon-square {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin-right: 0.75rem;
-  border-radius: 2px; /* Slightly rounded square */
-  flex-shrink: 0; /* Prevent icon from shrinking */
+  display: inline-block; width: 12px; height: 12px; margin-right: 0.75rem; border-radius: 2px; flex-shrink: 0;
 }
-
-/* Icon Colors */
 .icon-yellow { background-color: var(--icon-yellow); }
 .icon-pink { background-color: var(--icon-pink); }
 .icon-purple { background-color: var(--icon-purple); }
 .icon-orange { background-color: var(--icon-orange); }
-
 .feature-box-description {
-  font-family: Inter, sans-serif;
-  font-size: 0.95rem;
-  color: var(--how-it-works-text-light-secondary); /* Lighter text for description */
-  line-height: 1.6;
+  font-family: Inter, sans-serif; font-size: 0.95rem; color: var(--how-it-works-text-light-secondary); line-height: 1.6;
 }
 
 
-/* --- End of New How It Works Section Styles --- */
-
-
-/* Remove or comment out old How It Works styles if they exist */
-/*
-.how-it-works-section { ... }
-.how-it-works-container { ... }
-.how-it-works-title { ... }
-.steps-container { ... }
-.steps-row { ... }
-.step { ... }
-.step-number { ... }
-.step-title { ... }
-.step-description { ... }
-.step-arrow { ... }
-.arrow-1-2 { ... }
-.arrow-2-3 { ... }
-*/
+/* --- Styles for the previous How It Works Section (3 Steps) --- */
+/* Hide these if the 2-column layout above is the active one */
+.how-it-works-steps-container, .steps-grid, .step-number-badge, .step-title, .step-description {
+    /* display: none; */ /* Uncomment this line if you are using the 2-column layout above */
+}
 
 
 /* CTA section styles */
@@ -800,7 +787,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;
+  opacity: 0.6;
   z-index: 0;
 }
 
@@ -808,31 +795,33 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.9)
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.65) 100%
   );
 }
 
 .cta-container {
   position: relative;
   z-index: 10;
-  padding: 4rem 1.5rem 5rem; /* Adjusted top padding */
+  padding: 4rem 1.5rem 5rem;
   text-align: center;
   color: white;
-  /* Removed gradient overlay from here, handled by footer-bg::after */
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
 }
 
 .cta-card {
   max-width: 36rem;
   margin: 0 auto;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   border-radius: 1.5rem;
   padding: 3.5rem;
   background: linear-gradient(135deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.05)
+    rgba(54, 52, 52, 0.1),
+    rgba(59, 57, 57, 0.05)
   );
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
@@ -843,7 +832,7 @@ body {
 }
 
 .cta-card:hover {
-  transform: translateY(-5px);
+  /* transform: translateY(-5px); */
   box-shadow:
     0 30px 50px rgba(0, 0, 0, 0.5),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
@@ -902,7 +891,9 @@ body {
   z-index: 10;
   padding: 6rem 1.5rem 3rem;
   color: white;
-  /* Removed gradient background, handled by footer-bg::after */
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
 }
 
 .footer-container {
@@ -1032,4 +1023,29 @@ body {
   .footer {
     padding: 4rem 1.5rem 2rem;
   }
+}
+
+/* Add placeholder image styles */
+.feature-graphic-img {
+  /* If you have actual images, adjust styles here */
+  /* For placeholders: */
+   background-color: #333; /* Placeholder background */
+   width: 250px; /* Example fixed size */
+   height: 200px;
+   border-radius: 0.5rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #777;
+   font-style: italic;
+   content: "Graphic Placeholder"; /* Use ::before or direct text inside div */
+}
+
+img.feature-graphic-img { /* Override placeholder styles if using real img tags */
+  background-color: transparent;
+  width: auto; /* Let image size naturally or set max-width */
+  height: auto;
+  max-width: 100%;
+  max-height: 250px; /* Example max height */
+  content: ""; /* Remove text content */
 }
