@@ -7,6 +7,7 @@ type FeatureTab = 'customerExperience' | 'dedicatedInfrastructure' | 'operatingP
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [email, setEmail] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   // State to manage the active feature tab
   const [activeFeatureTab, setActiveFeatureTab] = useState<FeatureTab>('customerExperience');
   const rillURL = "https://rill.pages.dev/"; // Replace with your actual Get Started URL if different
@@ -24,6 +25,7 @@ function App() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false); // Close menu after clicking a link
     }
   };
 
@@ -43,7 +45,17 @@ function App() {
           <span className="logo-text" style={{ fontFamily: 'Unbounded' }}>Rill</span>
         </div>
 
-        <nav className="nav-links">
+        <button 
+          className={`hamburger-menu ${isMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <button className="nav-link" onClick={() => scrollToSection('hero')}>
             Home
           </button>
