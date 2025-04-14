@@ -33,18 +33,7 @@ function App() {
     alert(`Thank you! ${email} has been added to our waitlist.`);
     setEmail('');
   };
-
-  // Dummy function for CTA buttons inside tabs
-  const handleFeatureCtaClick = (featureName: string) => {
-    alert(`Learn more about ${featureName}...`);
-    // Example: window.location.href = `/features/${featureName}`;
-  }
-
-  // Dummy function for the "Start for Free" button in the feature section
-  const handleStartForFree = () => {
-    alert('Redirecting to Start for Free...');
-    // Example: window.open(rillURL, '_blank');
-  }
+  
 
   return (
     <div className="app-container">
