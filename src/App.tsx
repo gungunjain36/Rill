@@ -14,6 +14,13 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Header */}
@@ -22,14 +29,28 @@ function App() {
           <span className="logo-text" style={{ fontFamily: 'Unbounded' }}>Rill</span>
         </div>
         
-        <button className="btn btn-primary" onClick={() => window.open(rillURL, '_blank')}>
-          Get Started
-        </button>
+        <nav className="nav-links">
+          <button className="nav-link" onClick={() => scrollToSection('hero')}>
+            Home
+          </button>
+          <button className="nav-link" onClick={() => scrollToSection('features')}>
+            Features
+          </button>
+          <button className="nav-link" onClick={() => scrollToSection('how-it-works')}>
+            How It Works
+          </button>
+          <button className="nav-link" onClick={() => scrollToSection('footer')}>
+            Contact Us
+          </button>
+          {/* <button className="btn btn-primary" onClick={() => window.open(rillURL, '_blank')}>
+            Get Started
+          </button> */}
+        </nav>
       </header>
 
       <main>
         {/* Hero Section */}
-        <section className="hero-section">
+        <section id="hero" className="hero-section">
           {/* Background image */}
           <div 
             className="background-image"
@@ -223,31 +244,31 @@ function App() {
           </div>
         </section>
         
-        {/* How It Works Section */}
-        <section id="how-it-works" className="how-it-works-section">
+         {/* How It Works Section */}
+         <section id="how-it-works" className="how-it-works-section" style={{backgroundColor: 'black', color: 'white'}}>
           <div className="how-it-works-container">
-            <h2 className="how-it-works-title" style={{ fontFamily: 'Unbounded' }}>How It Works</h2>
+            <h2 className="how-it-works-title" style={{fontFamily: 'Unbounded'}}>How It Works</h2>
             
             <div className="steps-container">
               {/* Connecting line */}
               <div className="connecting-line"></div>
               
-              <div className="step">
-                <div className="step-number">1</div>
-                <h3 className="step-title" style={{ fontFamily: 'Unbounded' }}>Connect Wallet</h3>
-                <p className="step-description">Connect your Web3 wallet to get started and authenticate securely.</p>
+              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
+                <div className="step-number" style={{fontFamily: 'Unbounded'}}>1</div>
+                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Connect Wallet</h3>
+                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Connect your Web3 wallet to get started and authenticate securely.</p>
               </div>
               
-              <div className="step">
-                <div className="step-number">2</div>
-                <h3 className="step-title" style={{ fontFamily: 'Unbounded' }}>Describe Your dApp</h3>
-                <p className="step-description">Tell Rill what you want to build using natural language prompts.</p>
+              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
+                <div className="step-number" style={{fontFamily: 'Unbounded'}}>2</div>
+                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Describe Your dApp</h3>
+                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Tell Rill what you want to build using natural language prompts.</p>
               </div>
               
-              <div className="step">
-                <div className="step-number">3</div>
-                <h3 className="step-title" style={{ fontFamily: 'Unbounded' }}>Deploy & Share</h3>
-                <p className="step-description">Deploy to your chosen blockchain and share with collaborators via IPFS.</p>
+              <div className="step" style={{backgroundColor: 'black', color: 'white'}}>
+                <div className="step-number" style={{fontFamily: 'Unbounded'}}>3</div>
+                <h3 className="step-title" style={{fontFamily: 'Unbounded', color: 'white'}}>Deploy & Share</h3>
+                <p className="step-description" style={{color: 'rgba(219, 197, 197, 0.719)'}}>Deploy to your chosen blockchain and share with collaborators via IPFS.</p>
               </div>
             </div>
           </div>
@@ -278,7 +299,7 @@ function App() {
         </section>
         
         {/* Footer */}
-        <footer className="footer">
+        <footer id="footer" className="footer">
           <div className="footer-container">
             {/* Footer top section */}
             <div className="footer-top">
