@@ -1,0 +1,336 @@
+/* === Updated Features Section Styles (Tabs) === */
+.new-features-section {
+    padding: 5rem 1.5rem; /* Adjust padding */
+    background-color: var(--rill-background); /* Keep light background for the section */
+  }
+  
+  .section-container { /* Reusing this class name */
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Introductory Text Styles */
+  .feature-intro-text {
+    max-width: 700px; /* Limit width */
+    margin: 0 auto 4rem auto; /* Increased bottom margin from 3rem to 4rem */
+    text-align: center;
+  }
+  
+  .feature-intro-subtitle {
+    font-family: Spline Sans, sans-serif;
+    font-weight: 900;
+    font-size: 21px;
+    letter-spacing: 0.001em;
+    margin-bottom: 1rem; /* Increased from 0.5rem to 1rem */
+    position: relative;
+  }
+  
+  .feature-intro-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 2.25rem; /* Adjust size */
+    font-weight: 700;
+    color: var(--rill-text-primary);
+    line-height: 1.3;
+    margin-bottom: 1.5rem; /* Increased from 1rem to 1.5rem */
+  }
+  
+  .feature-intro-description {
+    font-family: Spline Sans, sans-serif;
+    font-size: 1rem;
+    color: var(--rill-text-secondary);
+    line-height: 1.6;
+  }
+  
+  /* Tab Container Styles */
+  .feature-tab-container {
+    background-color: var(--feature-tab-dark-bg);
+    border-radius: 1.5rem;
+    padding: 2.5rem 3.5rem 3.5rem 3.5rem; /* Increased padding */
+    position: relative;
+    overflow: hidden;
+    color: var(--feature-tab-text-light);
+    margin: 0 auto;
+    max-width: 1100px; /* Increased from 1000px */
+    margin-bottom: 70px;
+    min-height: 600px; /* Increased container height */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Tab Navigation Styles */
+  .feature-tabs {
+    display: flex;
+    justify-content: center;
+    background-color: var(--feature-tab-light-bg);
+    border-radius: 99px;
+    padding: 0.5rem;
+    margin: 0 auto 3.5rem auto; /* Increased bottom margin from 3rem to 3.5rem */
+    border: 1px solid var(--feature-tab-border);
+    width: fit-content;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .feature-tab-button {
+    font-family: Spline Sans, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--feature-tab-text-dark);
+    background-color: transparent;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .feature-tab-button:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle hover */
+  }
+  
+  .feature-tab-button.active {
+    background-color: var(--feature-tab-active-bg);
+    color: var(--feature-tab-active-text);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for active */
+  }
+  
+  /* Tab Content Styles */
+  .feature-tab-content-wrapper {
+    min-height: 450px; /* Increased from 300px */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center; /* Center content vertically */
+    flex-grow: 1; /* Allow it to grow and fill the container */
+  }
+  
+  .feature-tab-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+  }
+  
+  @media (min-width: 768px) { /* Side-by-side on larger screens */
+    .feature-tab-content {
+      flex-direction: row;
+      align-items: center; /* Center items vertically */
+      gap: 3rem;
+    }
+  }
+  
+  .feature-tab-text {
+    flex: 1; /* Allow text to take space */
+    max-width: 500px; /* Limit text width */
+  }
+  
+  @media (max-width: 767px) {
+    .feature-tab-text {
+        text-align: center; /* Center text when stacked */
+        max-width: 100%;
+    }
+  }
+  
+  .feature-tab-graphic {
+    flex: 1; /* Allow graphic to take space */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px; /* Increased from 200px */
+    max-width: 400px; /* Limit graphic width */
+    width: 100%;
+  }
+  
+  .feature-graphic-img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      /* Add specific styles if using divs instead of img */
+      /* background-color: #333; Example background */
+      /* border-radius: 0.5rem; */
+  }
+  
+  .feature-tab-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 2rem; /* Adjust size */
+    font-weight: 700;
+    color: var(--feature-tab-text-light);
+    line-height: 1.3;
+    margin-bottom: 2rem; /* Increased from 1.5rem to 2rem */
+  }
+  
+  .feature-tab-description {
+    font-family: Spline Sans, sans-serif;
+    font-size: 0.95rem;
+    color: var(--feature-tab-text-light-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  /* CTA button inside tab content */
+  .feature-tab-button-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-family: Spline Sans, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--feature-tab-text-light);
+    background-color: var(--feature-cta-button-bg);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .feature-tab-button-cta:hover {
+    background-color: var(--feature-cta-button-hover-bg);
+    transform: translateY(-2px);
+  }
+  
+  .feature-tab-button-cta .arrow-icon {
+    transition: transform 0.3s ease;
+  }
+  
+  /* .feature-tab-button-cta:hover .arrow-icon {
+    transform: translateX(3px);
+  } */
+  
+  /* Start for Free Button Styles */
+  .start-free-button-container {
+    position: absolute; /* Position relative to tab container */
+    bottom: 2rem; /* Adjust as needed */
+    right: 2rem; /* Adjust as needed */
+  }
+  
+  .start-free-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-family: Spline Sans, sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--feature-tab-text-light);
+    background-color: var(--feature-cta-button-bg); /* Same style as other CTAs */
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  /* 
+  .start-free-button:hover {
+     background-color: var(--feature-cta-button-hover-bg);
+     transform: translateY(-2px);
+  } */
+  
+  /* .start-free-button .arrow-icon {
+    transition: transform 0.3s ease;
+  } */
+  
+  /* .start-free-button:hover .arrow-icon {
+    transform: translateX(3px);
+  } */
+  
+  /* Mobile Responsive Styles */
+  @media (max-width: 768px) {
+    .feature-tabs {
+      width: 92%;
+      max-width: none;
+      background-color: #111111;
+      border-radius: 40px;
+      padding: 8px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      border: none;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+  
+    .feature-tab-button {
+      flex: 0 1 auto;
+      min-width: 0;
+      font-size: 0.85rem;
+      padding: 12px 16px;
+      background-color: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 32px;
+      text-align: center;
+      white-space: normal;
+      word-wrap: break-word;
+      line-height: 1.2;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      margin: 2px;
+    }
+  
+    .feature-tab-button.active {
+      background-color: white;
+      color: #111111;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+    
+    .feature-tab-button:not(.active):hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    /* Tab content wrapper adjustments for mobile */
+    .feature-tab-content-wrapper {
+      min-height: 500px; /* Increased from 400px for mobile */
+    }
+    
+    /* Ensure tab content text wraps properly */
+    .feature-tab-description {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+  }
+  
+  /* Small Mobile Adjustments */
+  @media (max-width: 480px) {
+    .feature-tabs {
+      width: 94%;
+      padding: 6px;
+      gap: 6px;
+    }
+  
+    .feature-tab-button {
+      font-size: 0.8rem;
+      padding: 10px 14px;
+      min-width: 80px; /* Smaller minimum width */
+      max-width: 140px; /* Maximum width to ensure proper wrapping */
+    }
+    
+    /* Ensure tab container has proper padding on small screens */
+    .feature-tab-container {
+      padding: 1.25rem 1.5rem 2rem 1.5rem;
+      min-height: 550px; /* Ensure enough height on small screens */
+    }
+  }
+  
+  
+  /* --- Cleanup Old Feature Section Styles --- */
+  /* Hide or remove styles for elements no longer used in this section */
+  .feature-row,
+  .feature-row-reverse,
+  .feature-icon-container,
+  .feature-icon,
+  .feature-title, /* Note: Hiding the old feature title */
+  .feature-description, /* Note: Hiding the old feature description */
+  .feature-list,
+  .feature-image {
+      display: none;
+  }

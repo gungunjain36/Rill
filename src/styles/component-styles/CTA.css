@@ -1,0 +1,104 @@
+
+
+
+
+
+/* CTA section styles */
+.cta-section {
+    position: relative;
+    background-color: black;
+    overflow: hidden;
+    /* margin-top: -4rem; */ /* Removed negative margin as new section has padding */
+    padding-top: 4rem; /* Add padding to separate from previous section */
+  }
+  
+  
+  
+  .cta-container {
+    position: relative;
+    z-index: 10;
+    padding: 4rem 1.5rem 5rem;
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+  }
+  
+  .cta-card {
+    max-width: 36rem;
+    margin: 0 auto;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 1.5rem;
+    padding: 3.5rem;
+    background: linear-gradient(135deg,
+      rgba(54, 52, 52, 0.1),
+      rgba(59, 57, 57, 0.05)
+    );
+    border: 1px solid rgba(24, 22, 22, 0.1);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.4),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: all 0.4s ease;
+  }
+  
+  .cta-card:hover {
+    /* transform: translateY(-5px); */
+    box-shadow:
+      0 30px 50px rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(29, 28, 28, 0.2);
+    border-color: rgba(39, 37, 37, 0.2);
+  }
+  
+  .cta-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, white, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cta-description {
+    font-family: Spline Sans, sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  
+  .cta-button {
+    font-family: Spline Sans, sans-serif;
+    font-weight: 500;
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    background: var(--rill-secondary);
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(143, 132, 132, 0.3);
+  }
+  
+  .cta-button:hover {
+    /* transform: translateY(-2px); */
+    box-shadow: 0 6px 20px rgba(255, 82, 82, 0.4);
+    /* background: linear-gradient(135deg,
+      var(--rill-primary-dark),
+      var(--rill-primary)
+    ); */
+  }
+  
+  
+  
+  
+  
+  
+  
+  
