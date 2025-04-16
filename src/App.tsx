@@ -1,25 +1,56 @@
 import { useState, useEffect } from 'react';
+
+// Base styles
 import './App.css';
+
+// Section styles
+import './styles/section-styles/Hero.css';
+import './styles/section-styles/Features.css';
+import './styles/section-styles/HowItWorks.css';
+import './styles/section-styles/Header.css';
+import './styles/section-styles/Footer.css';
+import './styles/section-styles/WhatIsRill.css';
+import './styles/section-styles/WebChallenges.css';
+import './styles/section-styles/Architecture.css';
+
+// Component styles
+import './styles/component-styles/Button.css';
+import './styles/component-styles/CTA.css';
+
+// Lucide icons for challenges section
+import { Puzzle, Sparkles, Clock, Zap, Plug, Repeat, Twitter, Mail } from 'lucide-react';
+
+// Toast components
+import { ToastProvider, useToast } from './components/Toast';
+
+// Supabase
+import Waitlist from './utils/waitList';
 
 // Define the possible tab names as a type for better type safety
 type FeatureTab = 'customerExperience' | 'dedicatedInfrastructure' | 'operatingProcedure';
 
-function App() {
+// Create a wrapped App component to use hooks inside the toast provider
+function AppContent() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [email, setEmail] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showWaitlist, setShowWaitlist] = useState(false);
+  const [waitlistClosed, setWaitlistClosed] = useState(false);
   // State to manage the active feature tab
   const [activeFeatureTab, setActiveFeatureTab] = useState<FeatureTab>('customerExperience');
-  const rillURL = "https://rill.pages.dev/"; // Replace with your actual Get Started URL if different
+  const rillURL = "https://rill.pages.dev/"; 
+  const { showToast } = useToast();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 100);
+      setShowWaitlist(scrollPosition > window.innerHeight * 0.5 && !waitlistClosed);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [waitlistClosed]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -29,13 +60,42 @@ function App() {
     }
   };
 
-  const handleWaitlistSubmit = (e: React.FormEvent) => {
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the email to your backend
-    alert(`Thank you! ${email} has been added to our waitlist.`);
-    setEmail('');
+    
+    try {
+      const result = await Waitlist(email);
+      
+      if (result.success) {
+        showToast(`Thank you! ${email} has been added to our waitlist.`, {
+          title: 'Success',
+          type: 'success',
+          duration: 5000
+        });
+        setEmail('');
+      } else {
+        showToast('Sorry, there was an error adding your email to the waitlist. Please try again.', {
+          title: 'Error',
+          type: 'error',
+          duration: 5000
+        });
+      }
+    } catch (error) {
+      console.error('Waitlist submission error:', error);
+      showToast('An unexpected error occurred. Please try again later.', {
+        title: 'Error',
+        type: 'error',
+        duration: 5000
+      });
+    }
   };
   
+  const closeWaitlist = () => {
+    // Instantly hide the waitlist
+    setShowWaitlist(false);
+    // Set the waitlistClosed state after hiding
+    setWaitlistClosed(true);
+  };
 
   return (
     <div className="app-container">
@@ -84,15 +144,42 @@ function App() {
           ></div>
           {/* Gradient overlay */}
           <div className="gradient-overlay"></div>
+          
+          {/* Rill Text and Lottie Animation - Positioned behind mockup */}
+          {/* <div className="rill-lottie-container">
+            <h1 className="rill-background-text" style={{ fontFamily: 'Unbounded' }}>Rill</h1>
+            <div className="lottie-animation">
+              <DotLottieReact
+                src="/Hero.json"
+                loop
+                autoplay
+              />
+            </div>
+          </div> */}
+
           {/* Content */}
           <div className="hero-content">
+            <span className="hero-greeting">Gm from Rill</span>
             <h1 className="hero-title" style={{ fontFamily: 'Unbounded' }}>
-            Turn Your Web3 <span className="highlight">Vibe</span> into Reality.
+              Go from Idea to <span className="highlight"> On-Chain in Minutes.</span>
             </h1>
-            <p className="hero-subtitle">
-            Describe your vision in plain language. Rill generates the smart contracts and frontend, ready to launch on multiple blockchains in seconds.
-            </p>
+            
+            {/* Mockup Image */}
+            <div className="mockup-container">
+              <img src="/Mockup.svg" alt="Rill Platform Mockup" className="mockup-image" />
+            </div>
+          </div>
+
+          {/* Floating Waitlist Form - Only visible after scroll */}
+          <div className={`floating-waitlist ${showWaitlist ? 'visible' : ''}`}>
             <div className="waitlist-form">
+              <button 
+                className="waitlist-close-btn" 
+                onClick={closeWaitlist}
+                aria-label="Close waitlist"
+              >
+                ×
+              </button>
               <form onSubmit={handleWaitlistSubmit}>
                 <input
                   type="email"
@@ -102,10 +189,138 @@ function App() {
                   required
                   className="waitlist-input"
                 />
-                <button type="submit" className="btn btn-primary btn-large">
-                  Join Waitlist
+                <button type="submit" className="btn btn-primary">
+                  Get Early Access
                 </button>
               </form>
+              <p className="waitlist-microcopy">Join the waitlist for the future of Web3 building.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* What is Rill Section */}
+        <section className="what-is-rill-section">
+          <div className="what-is-rill-container">
+            <h3 className="what-is-rill-header">What is Rill.</h3>
+            <h2 className="what-is-rill-title" style={{ fontFamily: 'Unbounded' }}>
+              Cursor for Web3
+            </h2>
+            <p className="what-is-rill-description">
+              Rill is your web3 copilot that writes itself. Point, click, deploy. 
+              Seamlessly integrate with any blockchain, wallet, or protocol without 
+              the complexity. Your ideas, instantly on-chain.
+            </p>
+            <div className="pricing-text">
+              All for just $0.0 during beta.
+            </div>
+            <div className="what-is-rill-cta">
+              <button className="btn btn-primary btn-dark" onClick={() => scrollToSection('footer')}>
+                Start Building
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Web3 Challenges Section */}
+        <section className="web3-challenges">
+          {/* Background Flow Element */}
+          <div className="challenges-background-flow"></div>
+
+          <div className="challenges-container">
+            {/* Header */}
+            <div className="challenges-header">
+              <p className="challenges-small-title">Web3 made simple.</p>
+              <h2 className="challenges-title">Breaking Down Barriers</h2>
+            </div>
+
+            {/* Problem-Solution Pairs */}
+            <div className="floating-items-wrapper">
+              {/* Pair 1: Complexity / Simple Interface */}
+              <div className="challenge-pair">
+                <div className="floating-item problem-card">
+                  <div className="floating-label problem-label">Challenge</div>
+                  <div className="icon-container problem-icon">
+                    <Puzzle size={24} />
+                  </div>
+                  <h3 className="floating-title">Complexity</h3>
+                  <p className="floating-text">
+                    Web3 development requires specialized knowledge and skills most developers don't have.
+                  </p>
+                </div>
+                
+                <div className="challenge-connector">
+                  <div className="connector-arrow"></div>
+                </div>
+                
+                <div className="floating-item solution-card">
+                  <div className="floating-label solution-label">Solution</div>
+                  <div className="icon-container solution-icon">
+                    <Sparkles size={24} />
+                  </div>
+                  <h3 className="floating-title">Simple Interface</h3>
+                  <p className="floating-text">
+                    Point-and-click development with no blockchain expertise required.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pair 2: Time-Consuming / Instant Development */}
+              <div className="challenge-pair">
+                <div className="floating-item problem-card">
+                  <div className="floating-label problem-label">Challenge</div>
+                  <div className="icon-container problem-icon">
+                    <Clock size={24} />
+                  </div>
+                  <h3 className="floating-title">Time-Consuming</h3>
+                  <p className="floating-text">
+                    Building dApps takes weeks to months, slowing innovation and time-to-market.
+                  </p>
+                </div>
+                
+                <div className="challenge-connector">
+                  <div className="connector-arrow"></div>
+                </div>
+                
+                <div className="floating-item solution-card">
+                  <div className="floating-label solution-label">Solution</div>
+                  <div className="icon-container solution-icon">
+                    <Zap size={24} />
+                  </div>
+                  <h3 className="floating-title">Instant Development</h3>
+                  <p className="floating-text">
+                    From idea to deployment in minutes with AI-powered code generation.
+                  </p>
+                </div>
+              </div>
+
+              {/* Pair 3: Integration Hurdles / Seamless Connection */}
+              <div className="challenge-pair">
+                <div className="floating-item problem-card">
+                  <div className="floating-label problem-label">Challenge</div>
+                  <div className="icon-container problem-icon">
+                    <Plug size={24} />
+                  </div>
+                  <h3 className="floating-title">Integration Hurdles</h3>
+                  <p className="floating-text">
+                    Connecting wallets and blockchains creates friction and user drop-off.
+                  </p>
+                </div>
+                
+                <div className="challenge-connector">
+                  <div className="connector-arrow"></div>
+                </div>
+                
+                <div className="floating-item solution-card">
+                  <div className="floating-label solution-label">Solution</div>
+                  <div className="icon-container solution-icon">
+                    <Repeat size={24} />
+                  </div>
+                  <h3 className="floating-title">Seamless Connection</h3>
+                  <p className="floating-text">
+                    One-click integration with any wallet or blockchain protocol.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -211,9 +426,9 @@ function App() {
             <div className="how-it-works-container-new">
                 {/* Left Side */}
                 <div className="how-it-works-left">
-                    <p className="how-it-works-subtitle">How Rill is built.</p>
+                    <p className="how-it-works-subtitle">The user journey.</p>
                     <h2 className="how-it-works-main-title">
-                        How it works?
+                        Rill in Action
                     </h2>
                     <p className="how-it-works-description">
                     Rill is an AI-powered platform that transforms Web3 development from concept to functional dApp in seconds.
@@ -270,6 +485,29 @@ function App() {
         </section>
         {/* === End of Updated How It Works Section === */}
 
+        {/* === Architecture Section === */}
+        <section className="architecture-section">
+          <div className="architecture-container">
+            <div className="architecture-header">
+              <p className="architecture-subtitle">How Rill is built.</p>
+              <h2 className="architecture-title">Our Architecture</h2>
+              <p className="architecture-description">
+                Rill combines cutting-edge technology to deliver a seamless Web3 development experience, 
+                connecting you with the blockchain infrastructure you need.
+              </p>
+            </div>
+            
+            <div className="architecture-diagram-container">
+              <img 
+                src="/arch.svg" 
+                alt="Rill Architecture Diagram" 
+                className="architecture-diagram" 
+              />
+            </div>
+          </div>
+        </section>
+        {/* === End of Architecture Section === */}
+
       </main>
 
       {/* Combined CTA and Footer section with shared background */}
@@ -289,7 +527,7 @@ function App() {
             <p className="cta-description">
               Connect your wallet and start building in minutes.
             </p>
-            <button className="cta-button" onClick={() => window.open(rillURL, '_blank')}>
+            <button className="btn btn-primary btn-dark" onClick={() => window.open(rillURL, '_blank')}>
               Get Started
             </button>
           </div>
@@ -307,22 +545,11 @@ function App() {
               </div>
 
               <div className="social-links">
-                <a href="#" className="social-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                  </svg>
+                <a href="https://x.com/fullrill" className="social-link" target="_blank" rel="noopener noreferrer">
+                  <Twitter size={24} />
                 </a>
-                <a href="#" className="social-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M9 6.75V15m6-6v8.25M15 15l3-3-3-3M9 15l-3-3 3-3"></path>
-                    <rect width="18" height="18" x="3" y="3" rx="5" ry="5"></rect>
-                  </svg>
-                </a>
-                <a href="#" className="social-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                    <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                  </svg>
+                <a href="mailto:rill.0111labs@gmail.com" className="social-link">
+                  <Mail size={24} />
                 </a>
               </div>
             </div>
@@ -337,6 +564,15 @@ function App() {
         </footer>
       </div>
     </div>
+  );
+}
+
+// Create a wrapper App component that provides the toast context
+function App() {
+  return (
+    <ToastProvider>
+      <AppContent />
+    </ToastProvider>
   );
 }
 

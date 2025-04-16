@@ -1,0 +1,87 @@
+.architecture-section {
+  position: relative;
+  padding: 5rem 1.5rem;
+  background-color: var(--rill-background);
+  z-index: 1;
+}
+
+.architecture-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.architecture-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.architecture-subtitle {
+  font-family: Spline Sans, sans-serif;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0.001em;
+  margin-bottom: 1rem;
+  position: relative;
+  color: var(--rill-text-primary);
+}
+
+.architecture-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Unbounded', sans-serif;
+  color: var(--rill-text-primary);
+}
+
+.architecture-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  color: var(--rill-text-secondary);
+}
+
+.architecture-diagram-container {
+  background-color: var(--feature-tab-dark-bg);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  color: var(--feature-tab-text-light);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.architecture-diagram {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 1rem;
+  background-color: rgba(30, 30, 30, 0.7); /* Dark background for the diagram */
+  padding: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .architecture-section {
+    padding: 4rem 1rem;
+  }
+  
+  .architecture-title {
+    font-size: 2rem;
+  }
+  
+  .architecture-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .architecture-diagram-container {
+    padding: 1.5rem;
+  }
+  
+  .architecture-diagram {
+    padding: 1rem;
+  }
+} 

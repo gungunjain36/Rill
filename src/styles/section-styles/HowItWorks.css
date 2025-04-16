@@ -1,0 +1,88 @@
+
+/* === How It Works Section Styles === */
+/* Keep styles from previous step, but ensure they don't conflict */
+
+.how-it-works-section-new {
+    padding: 5rem 1.5rem; /* Adjust padding */
+    background-color: var(--rill-background); /* Ensure light background */
+    overflow: hidden; /* Prevent horizontal scroll if content overflows slightly */
+  }
+  
+  /* Styles for the 2-column layout (if kept) */
+  .how-it-works-container-new {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Stack by default */
+    gap: 3rem;
+  }
+  @media (min-width: 992px) {
+    .how-it-works-container-new {
+      flex-direction: row; /* Side-by-side on larger screens */
+      gap: 4rem;
+    }
+  }
+  .how-it-works-left {
+    flex: 1;
+    max-width: 550px;
+    padding-right: 2rem;
+  }
+  @media (max-width: 991px) {
+    .how-it-works-left {
+      max-width: 100%; padding-right: 0; text-align: center;
+    }
+  }
+  .how-it-works-subtitle {
+    font-family: Spline Sans, sans-serif;
+    font-weight: 900;
+    font-size: 21px;
+    letter-spacing: 0.001em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .how-it-works-main-title {
+    font-family: 'Unbounded', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--rill-text-primary); line-height: 1.3; margin-bottom: 1.5rem;
+  }
+  .how-it-works-description {
+    font-family: Spline Sans, sans-serif; font-size: 1rem; color: var(--rill-text-secondary); line-height: 1.7; margin-bottom: 2.5rem;
+  }
+  .how-it-works-right {
+    flex: 1.2;
+  }
+  @media (max-width: 991px) {
+    .how-it-works-right { width: 100%; }
+  }
+
+
+/* --- Styles for the previous How It Works Section (3 Steps) --- */
+/* Hide these if the 2-column layout above is the active one */
+.how-it-works-steps-container, .steps-grid, .step-number-badge, .step-title, .step-description {
+    /* display: none; */ Uncomment this line if you are using the 2-column layout above
+}
+
+
+/* --- Styles for the new How It Works Section (3 Steps) --- */
+
+.feature-grid {
+    display: grid; grid-template-columns: repeat(1, 1fr); gap: 1.5rem;
+  }
+  @media (min-width: 600px) {
+    .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .feature-box {
+    background-color: var(--how-it-works-dark-bg); color: var(--how-it-works-text-light); padding: 2rem; border-radius: 1rem; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left; width: 100%; max-width: 380px; margin: 0 auto; /* Center boxes if grid centers items */
+  }
+  .feature-box:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); }
+  .feature-box-title {
+    font-family: Spline Sans, sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--how-it-works-text-light); margin-bottom: 0.75rem; display: flex; align-items: center;
+  }
+  .feature-icon-square {
+    display: inline-block; width: 12px; height: 12px; margin-right: 0.75rem; border-radius: 2px; flex-shrink: 0;
+  }
+  .icon-yellow { background-color: var(--icon-yellow); }
+  .icon-pink { background-color: var(--icon-pink); }
+  .icon-purple { background-color: var(--icon-purple); }
+  .icon-orange { background-color: var(--icon-orange); }
+  .feature-box-description {
+    font-family: Spline Sans, sans-serif; font-size: 0.95rem; color: var(--how-it-works-text-light-secondary); line-height: 1.6;
+  }

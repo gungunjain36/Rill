@@ -1,0 +1,52 @@
+.what-is-rill-section {
+  background-color: var(--rill-background);
+  padding: 5rem 1.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.what-is-rill-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: var(--feature-tab-dark-bg);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  color: var(--feature-tab-text-light);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.what-is-rill-header {
+  font-family: Spline Sans, sans-serif;
+  font-weight: 900;
+  font-size: 21px;
+  letter-spacing: 0.001em;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.what-is-rill-title {
+  font-size: 2.5rem;
+  line-height: 1.3;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.what-is-rill-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: var(--feature-tab-text-light-secondary);
+}
+
+.pricing-text {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.what-is-rill-cta {
+  margin-top: 1.5rem;
+}
