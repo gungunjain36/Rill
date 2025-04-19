@@ -39,6 +39,7 @@ function AppContent() {
   // State to manage the active feature tab
   const [activeFeatureTab, setActiveFeatureTab] = useState<FeatureTab>('customerExperience');
   const rillURL = "https://rill.pages.dev/"; 
+  console.log(rillURL);
   const { showToast } = useToast();
 
   useEffect(() => {
