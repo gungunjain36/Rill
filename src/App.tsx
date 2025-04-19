@@ -52,6 +52,12 @@ function AppContent() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [waitlistClosed]);
 
+  // Function to show waitlist when "Get Started" is clicked
+  const handleGetStarted = () => {
+    setShowWaitlist(true);
+    setWaitlistClosed(false);
+  };
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -102,6 +108,7 @@ function AppContent() {
       {/* Header */}
       <header className={`header ${isScrolled ? 'header-scrolled' : 'header-transparent'}`}>
         <div className="logo-container">
+          <img src="/logo.svg" alt="Rill Logo" className="logo-image" />
           <span className="logo-text" style={{ fontFamily: 'Unbounded' }}>Rill</span>
         </div>
 
@@ -128,7 +135,7 @@ function AppContent() {
           <button className="nav-link" onClick={() => scrollToSection('footer')}>
             Contact Us
           </button>
-          <button className="btn btn-primary" onClick={() => window.open(rillURL, '_blank')}>
+          <button className="btn btn-primary" onClick={handleGetStarted}>
             Get Started
           </button>
         </nav>
@@ -214,7 +221,7 @@ function AppContent() {
               All for just $0.0 during beta.
             </div>
             <div className="what-is-rill-cta">
-              <button className="btn btn-primary btn-dark" onClick={() => scrollToSection('footer')}>
+              <button className="btn btn-primary btn-dark" onClick={handleGetStarted}>
                 Start Building
               </button>
             </div>
@@ -527,7 +534,7 @@ function AppContent() {
             <p className="cta-description">
               Connect your wallet and start building in minutes.
             </p>
-            <button className="btn btn-primary btn-dark" onClick={() => window.open(rillURL, '_blank')}>
+            <button className="btn btn-primary btn-dark" onClick={handleGetStarted}>
               Get Started
             </button>
           </div>

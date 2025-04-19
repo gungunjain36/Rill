@@ -36,6 +36,11 @@
     color: var(--rill-primary);
   }
   
+  .logo-image {
+    height: 80px;
+    width: auto;
+  }
+  
   .nav-menu {
     display: none;
   }

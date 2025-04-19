@@ -43,13 +43,14 @@
 }
 
 .architecture-diagram-container {
-  background-color: var(--feature-tab-dark-bg);
+  background-color: var(--rill-background);
   border-radius: 1.5rem;
   padding: 3rem;
-  color: var(--feature-tab-text-light);
+  color: var(--rill-text-primary);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
   overflow: hidden;
+  border: 1px solid var(--rill-border-color);
 }
 
 .architecture-diagram {
@@ -58,8 +59,9 @@
   margin: 0 auto;
   display: block;
   border-radius: 1rem;
-  background-color: rgba(30, 30, 30, 0.7); /* Dark background for the diagram */
+  background-color: var(--rill-background);
   padding: 1.5rem;
+  border: 1px solid var(--rill-border-color);
 }
 
 /* Responsive adjustments */
